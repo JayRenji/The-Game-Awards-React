@@ -4,6 +4,7 @@ import './App.css';
 import Footer from './core/Footer/Footer';
 import Header from './core/Header/Header';
 import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
 import Management from './pages/Management/Management';
 import Podium from './pages/Podium/Podium';
 
@@ -16,6 +17,7 @@ function App() {
               <Route path='/' element={<Home/>}/>
               <Route path='/podium' element={<Podium/>}/>
               <Route path='/management' element={<Management/>}/>
+              <Route path='/login' element={<Login/>}/>
           </Routes>
       </main>
       <Footer/>
