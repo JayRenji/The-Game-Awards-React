@@ -8,9 +8,7 @@ import { getAllGames } from '../../redux/games/games.actions';
 
 function Home() {
 
-  const dispatch = useDispatch();
-  const params = useParams();
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
   const {games, info, error, isLoading} = useSelector(state => state.games);
 
 
