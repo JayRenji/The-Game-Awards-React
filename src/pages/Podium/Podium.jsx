@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllGames } from '../../redux/games/games.actions';
 import crown from '../../assets/img/crown.png';
+import PodiumGame from '../../components/PodiumGame/PodiumGame';
 
 
 
@@ -40,12 +41,7 @@ function Podium() {
       <img className='crown' src={crown}/>
       <div className='podium__gotys'>
         {sortedGames.map((game) =>
-          <div className='podium__gotys--game'>
-              <img src= { game.img }/>
-              <div className='div__votes'>
-                  <p className='votes'>{ game.votes } votes</p>
-              </div>
-          </div>
+          <PodiumGame game={game}/>
         )}
       </div>
     </section>

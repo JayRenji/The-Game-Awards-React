@@ -34,38 +34,10 @@ $retroColor : #EC68B5;
             height: 46vh;
         }
 
-        &--game{
-            text-align: center;
-
-            .div__votes{
-                width: 100px;
-                margin: 0 auto;
-                position: relative;
-                transform: translateY(-40px);
-                .votes{
-                    line-height: 78px;
-                    font-size: 20px;
-                    font-family: 'Bebas Neue', sans-serif;
-                    background: linear-gradient(45deg, transparent 5%, #fe00ae 5%);
-                    border: 0;
-                    color: #fff;
-                    letter-spacing: 3px;
-                    box-shadow: 6px 0px 0px #00E6F6;
-                    outline: transparent;
-                    position: relative;
-                    user-select: none;
-                    -webkit-user-select: none;
-                    touch-action: manipulation;
-
-                    
-                }
-            }
-            
-            
-        }
+        
 
         &--game:nth-child(odd){
-            margin-top: 100px;
+            margin-top: 70px;
         }
 
     }
