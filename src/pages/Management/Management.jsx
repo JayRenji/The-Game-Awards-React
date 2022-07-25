@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './Management.scss';
+import { createGame,editGame,deleteGame } from "../../redux/games/games.actions";
+import { useNavigate } from 'react-router-dom';
 
 const INITIAL_STATE = {
   title: '',
@@ -10,14 +13,15 @@ const INITIAL_STATE = {
   platform: [],
   img: '',
   deletedid: 1,
-  id: 0
+  id: ''
 };
 
 
-function Management() {
+function Management(props) {
 
 
   const [form, setForm] = useState(INITIAL_STATE);
+  const navigate = useNavigate();
 
   const handleInput = (event) => {
     const { name, value } = event.target;
@@ -40,14 +44,35 @@ function Management() {
     event.target.src = 'https://plantillasdememes.com/img/plantillas/imagen-no-disponible01601774755.jpg'
   }
 
+  const dispatch = useDispatch();
+  
+  const submitGame = (event) =>{
 
+    event.preventDefault();
+    if(!form.title || !form.description || !form.trailer || !form.platform || !form.img) {
+      console.log('Some of the fields are not filled.');
+      return;
+    }
+
+    if (form.id === ''){
+      dispatch(createGame(form))
+    }else{
+      dispatch(editGame(form))
+    }
+    navigate('/');
+  }
+
+  const deleteGameButton = () =>{
+    dispatch(deleteGame(form.id))
+    navigate('/');
+  }
 
   return (
     <>
     <section className="formulario">
     <h2>The Game Awards Management</h2>
     <div className="container">
-      <form>
+      <form onSubmit={submitGame}>
         <label>
           <p>Title</p>
           <input type="text" name="title" value={form.title} onChange={handleInput}/>
@@ -148,7 +173,7 @@ function Management() {
         </div>
         <div className="buttons">
           <button type="submit">Submit</button>
-          {form.id>0 && <button type="button"> Delete </button>}
+          {form.id!=='' && <button type="button" onClick={deleteGameButton}> Delete </button>}
         </div>
       </form>
       <ng-container>
