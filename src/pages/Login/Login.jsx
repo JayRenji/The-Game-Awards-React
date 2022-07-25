@@ -1,24 +1,32 @@
-import { React } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useState } from "react";
 import "./Login.scss";
-import { API } from "../../shared/Api/Api";
+import Swal from "sweetalert2";
 
 const Login = () => {
-	const navigate = useNavigate();
+	const INITIAL_STATE = {
+		email: "",
+		password: "",
+	};
 
-	const onSubmit = (formData) => {
-		formData.preventDefault();
-		console.log("hola");
-		API.post("api/users/login", formData).then((res) => {
-			console.log(res);
-			localStorage.setItem("token", res.data.token);
-			console.log("consigo entrar?");
-		});
+	const [formState, setFormState] = useState(INITIAL_STATE);
 
-		if (localStorage.getItem("token")) {
-			navigate("/management");
-		} else {
-			console.log("no logueado");
+	const handleInput = (event) => {
+		const { name, value } = event.target;
+		setFormState({ ...formState, [name]: value });
+	};
+
+	const submitForm = (event) => {
+		event.preventDefault();
+		if (formState.email.length > 8 && formState.password.length > 8) {
+			Swal.fire({
+				position: "center",
+				icon: "success",
+				title: "Welcome!",
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			localStorage.setItem("token", true);
 		}
 	};
 
@@ -26,33 +34,27 @@ const Login = () => {
 		<section className="login">
 			<h2>Login</h2>
 			<div className="container">
-				<form onSubmit={onSubmit} className="form">
-					<div className="form__row1"></div>
-					<label>
-						<p>Email</p>
+				<form onSubmit={submitForm} className="form">
+					<div className="form__row1">
+						<label>Email</label>
 						<input
 							type="text"
-							id="email"
+							onChange={handleInput}
 							name="email"
-							// required
-							// autoComplete="off"
-							// placeholder="example@example.com"
-						/>
-					</label>
-					<div className="form__row2">
-						<label>
-							<p>Password</p>
-							<input
-								type="password"
-								id="password"
-								name="password"
-								// required
-								// autoComplete="off"
-								// placeholder="with letters and numbers, min 8"
-								// pattern="\A(?=[A-Za-z]+[0-9]|[0-9]+[A-Za-z])[A-Za-z0-9]{8,12}\Z"
-							/>
-						</label>
+							value={formState.email}
+						></input>
 					</div>
+
+					<div className="form__row2">
+						<label>Password</label>
+						<input
+							type="password"
+							onChange={handleInput}
+							name="password"
+							value={formState.password}
+						></input>
+					</div>
+
 					<div className="buttons">
 						<button type="submit">Login</button>
 					</div>
