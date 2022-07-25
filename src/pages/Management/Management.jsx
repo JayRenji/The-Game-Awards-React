@@ -147,6 +147,7 @@ function Management(props) {
 
               return (
                 <div key={`${JSON.stringify(element)}-${index}`}>
+                  <label for={element}>
                   <input
                     type="checkbox"
                     id="platform"
@@ -154,7 +155,8 @@ function Management(props) {
                     value={form.platform[element]}
                     onChange={changeCheckbox}
                   />
-                  <label for={element}>{element}</label>
+                  <p>{element}</p>
+                  </label>
                 </div>
                 )
             })
