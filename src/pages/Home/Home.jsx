@@ -30,7 +30,7 @@ function Home() {
 
 			<div className='cards'>
 				{games.map((game) => (
-					<HomeCard game={game} />
+					<HomeCard game={game} key={`${JSON.stringify(game)}`}/>
 				))}
 			</div>
 		</section>
