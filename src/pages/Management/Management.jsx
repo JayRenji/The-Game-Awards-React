@@ -144,19 +144,19 @@ function Management(props) {
         <div className="platform">
           {
             PLATFORM.map((element,index) => {
+
               return (
                 <div key={`${JSON.stringify(element)}-${index}`}>
-                <label>
-                <input
-                  type="checkbox"
-                  id="platform"
-                  name={props}
-                  value={form.platform[props]}
-                  onChange={changeCheckbox}
+                  <input
+                    type="checkbox"
+                    id="platform"
+                    name={element}
+                    value={form.platform[element]}
+                    onChange={changeCheckbox}
                   />
-                  <p>{element}</p>
-                </label>
-            </div>)
+                  <label for={element}>{element}</label>
+                </div>
+                )
             })
           }
           
