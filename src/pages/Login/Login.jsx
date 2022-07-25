@@ -1,55 +1,24 @@
-import React from "react";
-import { useState } from "react";
+import { React } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.scss";
-import Swal from "sweetalert2";
-
-// En app:
-// const [logged, setLogged] = useState(false);
-
-// En nav: const nav = ({setLogged})
-
-// const Logout = () => {
-// 	localStorage.removeItem("token");
-// 	return <Navigate to="/" />;
-// 	setLogged(false);
-// };
-
-// y {logged && <li onClick={() => logout()}}
+import { API } from "../../shared/Api/Api";
 
 const Login = () => {
-	const INITIAL_STATE = {
-		user: "",
-		password: "",
-	};
+	const navigate = useNavigate();
 
-	const [formState, setFormState] = useState(INITIAL_STATE);
+	const onSubmit = (formData) => {
+		formData.preventDefault();
+		console.log("hola");
+		API.post("api/users/login", formData).then((res) => {
+			console.log(res);
+			localStorage.setItem("token", res.data.token);
+			console.log("consigo entrar?");
+		});
 
-	const handleInput = (event) => {
-		const { name, value } = event.target;
-		setFormState({ ...formState, [name]: value });
-	};
-
-	const submitForm = (event) => {
-		event.preventDefault();
-		if (formState.user.length > 8 && formState.password.length > 8) {
-			console.log("me he logueado");
-			Swal.fire({
-				position: "center",
-				icon: "success",
-				title: "Welcome!",
-				showConfirmButton: false,
-				timer: 1500,
-			});
-			localStorage.setItem("token", true);
-			// setLogged(true); Cuando esté en nav el setLogged
+		if (localStorage.getItem("token")) {
+			navigate("/management");
 		} else {
-			Swal.fire({
-				position: "center",
-				icon: "success",
-				title: "Not authorized",
-				showConfirmButton: false,
-				timer: 1500,
-			});
+			console.log("no logueado");
 		}
 	};
 
@@ -57,35 +26,35 @@ const Login = () => {
 		<section className="login">
 			<h2>Login</h2>
 			<div className="container">
-				<form onSubmit={submitForm} className="form">
-					<div className="form__row1">
-						<label>User</label>
-						{/* 
-						Pattern numbers & letters, min 8 */}
+				<form onSubmit={onSubmit} className="form">
+					<div className="form__row1"></div>
+					<label>
+						<p>Email</p>
 						<input
 							type="text"
-							onChange={handleInput}
-							name="user"
-							pattern="\A(?=[A-Za-z]+[0-9]|[0-9]+[A-Za-z])[A-Za-z0-9]{8,12}\Z"
-							value={formState.user}
-						></input>
-					</div>
-
+							id="email"
+							name="email"
+							// required
+							// autoComplete="off"
+							// placeholder="example@example.com"
+						/>
+					</label>
 					<div className="form__row2">
-						<label>Password</label>
-						{/* 
-						Pattern numbers & letters, min 8 */}
-						<input
-							type="password"
-							onChange={handleInput}
-							name="password"
-							pattern="\A(?=[A-Za-z]+[0-9]|[0-9]+[A-Za-z])[A-Za-z0-9]{8,12}\Z"
-							value={formState.password}
-						></input>
+						<label>
+							<p>Password</p>
+							<input
+								type="password"
+								id="password"
+								name="password"
+								// required
+								// autoComplete="off"
+								// placeholder="with letters and numbers, min 8"
+								// pattern="\A(?=[A-Za-z]+[0-9]|[0-9]+[A-Za-z])[A-Za-z0-9]{8,12}\Z"
+							/>
+						</label>
 					</div>
-
 					<div className="buttons">
-						<button>Login</button>
+						<button type="submit">Login</button>
 					</div>
 				</form>
 			</div>
