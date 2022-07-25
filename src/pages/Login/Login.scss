@@ -12,6 +12,8 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 50% 20%;
+	background-attachment: fixed;
+	padding: 2rem;
 
 	h2 {
 		font-family: "Monoton";
@@ -36,31 +38,31 @@
 	width: auto;
 	gap: 10px;
 	padding: 2rem;
-}
 
-label {
-	display: flex;
-	font-weight: bold;
-	font-size: 1.3em;
-	cursor: default;
-	margin-bottom: 10px;
-}
+	label {
+		display: flex;
+		font-weight: bold;
+		font-size: 1.3em;
+		cursor: default;
+		margin-bottom: 10px;
+	}
 
-input {
-	font-size: 16px;
-	line-height: 28px;
-	padding: 8px 16px;
-	min-height: 20px;
+	input {
+		font-size: 16px;
+		line-height: 28px;
+		padding: 8px 16px;
+		min-height: 20px;
 
-	width: calc(100% - 32px);
-	border: unset;
-	border-radius: 4px;
-	outline-color: #ec68b5;
-	background-color: rgb(255, 255, 255);
-	box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-		rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
-		rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-		rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+		width: calc(100% - 32px);
+		border: unset;
+		border-radius: 4px;
+		outline-color: #ec68b5;
+		background-color: rgb(255, 255, 255);
+		box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+			rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+			rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+			rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+	}
 }
 
 .buttons {

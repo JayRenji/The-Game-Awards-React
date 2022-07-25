@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./Login.scss";
 import Swal from "sweetalert2";
 
-const Login = () => {
+const Login = ({ setLogged }) => {
 	const INITIAL_STATE = {
 		email: "",
 		password: "",
@@ -27,6 +27,7 @@ const Login = () => {
 				timer: 1500,
 			});
 			localStorage.setItem("token", true);
+			setLogged(true);
 		}
 	};
 
