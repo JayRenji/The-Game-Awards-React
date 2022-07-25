@@ -1,0 +1,48 @@
+$retroColor : #EC68B5;
+
+.podium{
+    width: 100%;
+    // background: url("../../../assets/images/city.jpg");
+    padding-top: 80px;
+    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .crown{
+        width: 10%;
+        position: relative;
+        transform: translateY(30px);
+    }
+
+    h2{
+        text-align: center;
+        color: $retroColor;
+        font-family: 'Monoton';
+        font-size: 2rem;
+        text-decoration: underline #4206F1;
+    }
+
+    &__gotys{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+
+        img{
+            width: 20vw;
+            height: 46vh;
+        }
+
+        
+
+        &--game:nth-child(odd){
+            margin-top: 70px;
+        }
+
+    }
+
+    // &__game:nth-child(odd){
+    //     margin-top: 100px;
+    // }
+}
