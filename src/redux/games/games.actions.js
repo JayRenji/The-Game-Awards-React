@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 export const FETCH_GAMES = 'FETCH_GAMES';
 export const FETCH_GAMES_OK = 'FETCH_GAMES_OK';
 export const FETCH_GAMES_ERROR = 'FETCH_GAMES_ERROR';
