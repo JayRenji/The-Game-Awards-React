@@ -24,15 +24,11 @@ function Home() {
 			<p className='welcome'>WELCOME TO THE 2022 EDITION OF</p>
 			<p className='award'>THE GAME AWARDS!</p>
 			<div className='search'>
-				<input
-					className='input'
-					// [(ngModel)]="filter"
-					type='text'
-					placeholder='Search Game or Genre'
-				/>
+				<input className='input' type='text' placeholder='Search Game or Genre' />
 			</div>
-			{games.map((game) => (
-				<div className='cards'>
+
+			<div className='cards'>
+				{games.map((game) => (
 					<div className='card'>
 						<img src={game.img} alt={game.title} />
 						<div className='card__content'>
@@ -48,8 +44,8 @@ function Home() {
 							<button className='button-49'>EDIT</button>
 						</div>
 					</div>
-				</div>
-			))}
+				))}
+			</div>
 		</section>
 	);
 }
