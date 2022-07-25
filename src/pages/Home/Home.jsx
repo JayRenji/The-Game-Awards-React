@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getAllGames } from '../../redux/games/games.actions';
+import HomeCard from '../../components/HomeCard/HomeCard';
 
 function Home() {
 	const dispatch = useDispatch();
@@ -29,21 +30,7 @@ function Home() {
 
 			<div className='cards'>
 				{games.map((game) => (
-					<div className='card'>
-						<img src={game.img} alt={game.title} />
-						<div className='card__content'>
-							<h4 className='genre'>{game.genre}</h4>
-							<ul className='platform'>
-								{game.platform.map((platform) => (
-									<li>{platform}</li>
-								))}
-							</ul>
-						</div>
-						<div className='card__buttons'>
-							<button className='button-49'>VOTE!</button>
-							<button className='button-49'>EDIT</button>
-						</div>
-					</div>
+					<HomeCard game={game} />
 				))}
 			</div>
 		</section>
