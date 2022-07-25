@@ -1,3 +1,6 @@
+import ButtonEdit from '../ButtonEdit/ButtonEdit';
+import ButtonVote from '../ButtonVote/ButtonVote';
+
 const HomeCard = ({ game }) => {
 	return (
 		<div className='card'>
@@ -11,8 +14,8 @@ const HomeCard = ({ game }) => {
 				</ul>
 			</div>
 			<div className='card__buttons'>
-				<button className='button-49'>VOTE!</button>
-				<button className='button-49'>EDIT</button>
+				<ButtonVote />
+				<ButtonEdit />
 			</div>
 		</div>
 	);
