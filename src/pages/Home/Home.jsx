@@ -6,30 +6,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getAllGames } from '../../redux/games/games.actions';
 
 function Home() {
-	return (
-		<section>
-			<p class='welcome'>WELCOME TO THE 2022 EDITION OF</p>
-			<p class='award'>THE GAME AWARDS!</p>
-
-			<div class='search'>
-				<input class='input' type='text' placeholder='Search Game or Genre' />
-			</div>
-			<div class='cards'>
-				<img src='{{ game.img }}' alt='{{ game.title }}' />
-				<div class='card__content'>
-					<h4 class='genre'> game.genre </h4>
-					<ul class='platform'>
-						<li> platform </li>
-					</ul>
-				</div>
-				<div class='card__buttons'>
-					<button>VOTE!</button>
-					<button>EDIT</button>
-				</div>
-			</div>
-		</section>
-	);
-
 	const dispatch = useDispatch();
 	const params = useParams();
 	const navigate = useNavigate();
@@ -44,11 +20,37 @@ function Home() {
 	}, []);
 
 	return (
-		<>
+		<section className='home-page'>
+			<p className='welcome'>WELCOME TO THE 2022 EDITION OF</p>
+			<p className='award'>THE GAME AWARDS!</p>
+			<div className='search'>
+				<input
+					className='input'
+					// [(ngModel)]="filter"
+					type='text'
+					placeholder='Search Game or Genre'
+				/>
+			</div>
 			{games.map((game) => (
-				<div>{game.title}</div>
+				<div className='cards'>
+					<div className='card'>
+						<img src={game.img} alt={game.title} />
+						<div className='card__content'>
+							<h4 className='genre'>{game.genre}</h4>
+							<ul className='platform'>
+								{game.platform.map((platform) => (
+									<li>{platform}</li>
+								))}
+							</ul>
+						</div>
+						<div className='card__buttons'>
+							<button className='button-49'>VOTE!</button>
+							<button className='button-49'>EDIT</button>
+						</div>
+					</div>
+				</div>
 			))}
-		</>
+		</section>
 	);
 }
 
