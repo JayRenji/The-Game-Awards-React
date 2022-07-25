@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './Management.scss';
+import { createGame,editGame,deleteGame } from "../../redux/games/games.actions";
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
+
 
 const INITIAL_STATE = {
   title: '',
@@ -10,18 +15,22 @@ const INITIAL_STATE = {
   platform: [],
   img: '',
   deletedid: 1,
-  id: 0
+  id: ''
 };
 
 
-function Management() {
+function Management(props) {
 
 
   const [form, setForm] = useState(INITIAL_STATE);
+  const [formClean, setFormClean] = useState(INITIAL_STATE);
+  const navigate = useNavigate();
 
   const handleInput = (event) => {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
+    console.log('1',form);
+    console.log('2',INITIAL_STATE);
   };
 
   const changeCheckbox = (event) => {
@@ -40,14 +49,73 @@ function Management() {
     event.target.src = 'https://plantillasdememes.com/img/plantillas/imagen-no-disponible01601774755.jpg'
   }
 
+  const dispatch = useDispatch();
+  
+  const submitGame = (event) =>{
+    let message ="";
 
+    event.preventDefault();
+    if(!form.title || !form.description || !form.trailer || !form.platform || !form.img) {
+      Swal.fire('Some of the fields are not filled.');
+      return;
+    }
+
+    if (form.id === ''){
+      dispatch(createGame(form))
+      message="Game created";
+    }else{
+      dispatch(editGame(form))
+      message="Game edited";
+    }
+
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: message,
+      showConfirmButton: false,
+      timer: 1500
+    })
+
+    setTimeout(() => {
+      navigate('/');
+    }, 600);
+  }
+
+  const deleteGameButton = () =>{
+    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+
+      dispatch(deleteGame(form.id))
+
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Game deleted',
+        showConfirmButton: false,
+        timer: 1500
+      })
+
+      setTimeout(() => {
+        navigate('/');
+      }, 600);
+    })
+
+  }
 
   return (
     <>
     <section className="formulario">
     <h2>The Game Awards Management</h2>
     <div className="container">
-      <form>
+      <form onSubmit={submitGame}>
         <label>
           <p>Title</p>
           <input type="text" name="title" value={form.title} onChange={handleInput}/>
@@ -148,23 +216,23 @@ function Management() {
         </div>
         <div className="buttons">
           <button type="submit">Submit</button>
-          {form.id>0 && <button type="button"> Delete </button>}
+          {form.id!=='' && <button type="button" onClick={deleteGameButton}> Delete </button>}
         </div>
       </form>
-      <ng-container>
-        <div className="card">
-          <img
+        {form !== formClean && <div className="card">
+          {form.img!=='' && <img
             src={ form.img }
             onError= {defaultPic}
             alt={ form.title }
-          />
+          />}
           <div className="card__content">
-            {form.title && <h3 className="title">{form.title}</h3>}
-            {form.platform && <h4>{form.platform.join(' - ')}</h4>} 
-            {form.genre && <h4 className="genre"> {form.genre}</h4>}
+            {form.title && <h3 className="title">Title: {form.title}</h3>}
+            {form.description && <h3 className="description">Description: {form.description}</h3>}
+            {form.platform && <h4>Platform: {form.platform.join(' - ')}</h4>} 
+            {form.genre && <h4 className="genre">Genre: {form.genre}</h4>}
+            {form.trailer && <h4 className="trailer">Trailer: {form.trailer}</h4>}
           </div>
-        </div>
-      </ng-container>
+        </div>}
     </div>
   </section>
 </>
