@@ -18,6 +18,7 @@ const INITIAL_STATE = {
   id: ''
 };
 
+const PLATFORM = ['PS4','PS5','PC','SWITCH','XBOX X','XBOX S','XBOX ONE']
 
 function Management(props) {
 
@@ -29,8 +30,6 @@ function Management(props) {
   const handleInput = (event) => {
     const { name, value } = event.target;
     setForm({ ...form, [name]: value });
-    console.log('1',form);
-    console.log('2',INITIAL_STATE);
   };
 
   const changeCheckbox = (event) => {
@@ -55,7 +54,7 @@ function Management(props) {
     let message ="";
 
     event.preventDefault();
-    if(!form.title || !form.description || !form.trailer || !form.platform || !form.img) {
+    if(!form.title || !form.trailer || !form.platform || !form.img || !form.platform[0]) {
       Swal.fire('Some of the fields are not filled.');
       return;
     }
@@ -143,76 +142,24 @@ function Management(props) {
         
         <h3>Platform</h3>
         <div className="platform">
-          <div>
-            <input
-              type="checkbox"
-              id="platform"
-              name="PS4"
-              value={form.platform['PS4']}
-              onChange={changeCheckbox}
-            />
-            <label for="PS4">PS4</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="platform"
-              name="PS5"
-              alue={form.platform['PS5']}
-              onChange={changeCheckbox}
-            />
-            <label for="PS5">PS5</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="platform"
-              name="PC"
-              alue={form.platform['PC']}
-              onChange={changeCheckbox}
-            />
-            <label for="PC">PC</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="platform"
-              name="SWITCH"
-              alue={form.platform['SWITCH']}
-              onChange={changeCheckbox}
-            />
-            <label for="SWITCH">SWITCH</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="platform"
-              name="XBOX X"
-              alue={form.platform['XBOX X']}
-              onChange={changeCheckbox}
-            />
-            <label for="XBOX X">XBOX X</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="platform"
-              name="XBOX S"
-              alue={form.platform['XBOX S']}
-              onChange={changeCheckbox}
-            />
-            <label for="XBOX S">XBOX S</label>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              id="platform"
-              name="XBOX ONE"
-              alue={form.platform['XBOX ONE']}
-              onChange={changeCheckbox}
-            />
-            <label for="XBOX ONE">XBOX ONE</label>
-          </div>
+          {
+            PLATFORM.map((element,index) => {
+              return (
+                <div key={`${JSON.stringify(element)}-${index}`}>
+                <label>
+                <input
+                  type="checkbox"
+                  id="platform"
+                  name={props}
+                  value={form.platform[props]}
+                  onChange={changeCheckbox}
+                  />
+                  <p>{element}</p>
+                </label>
+            </div>)
+            })
+          }
+          
         </div>
         <div className="buttons">
           <button type="submit">Submit</button>
@@ -228,7 +175,7 @@ function Management(props) {
           <div className="card__content">
             {form.title && <h3 className="title">Title: {form.title}</h3>}
             {form.description && <h3 className="description">Description: {form.description}</h3>}
-            {form.platform && <h4>Platform: {form.platform.join(' - ')}</h4>} 
+            {form.platform[0] && <h4>Platform: {form.platform.join(' - ')}</h4>} 
             {form.genre && <h4 className="genre">Genre: {form.genre}</h4>}
             {form.trailer && <h4 className="trailer">Trailer: {form.trailer}</h4>}
           </div>
