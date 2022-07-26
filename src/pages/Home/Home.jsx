@@ -39,7 +39,7 @@ function Home() {
 		{
 		<div className='cards'>
 			{results.map((game) => (
-				<HomeCard game={game} />
+				<HomeCard game={game} key={`${JSON.stringify(game)}`}/>
 			))}
 		</div>
 		}
