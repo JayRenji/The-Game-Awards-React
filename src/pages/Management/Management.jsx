@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './Management.scss';
 import { createGame,editGame,deleteGame } from "../../redux/games/games.actions";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
 
@@ -21,11 +21,13 @@ const INITIAL_STATE = {
 const PLATFORM = ['PS4','PS5','PC','SWITCH','XBOX X','XBOX S','XBOX ONE']
 
 function Management(props) {
-
-
-  const [form, setForm] = useState(INITIAL_STATE);
-  const [formClean, setFormClean] = useState(INITIAL_STATE);
+  
+  
   const navigate = useNavigate();
+  const location = useLocation();
+  const [form, setForm] = useState(location.state ? location.state.game : INITIAL_STATE);
+  const [formClean, setFormClean] = useState(INITIAL_STATE);
+  
 
   const handleInput = (event) => {
     const { name, value } = event.target;
@@ -117,27 +119,27 @@ function Management(props) {
       <form onSubmit={submitGame}>
         <label>
           <p>Title</p>
-          <input type="text" name="title" value={form.title} onChange={handleInput}/>
+          <input type="text" name="title" value={form.title} onChange={handleInput} placeholder="Elden Ring"/>
         </label>
 
         <label>
           <p>Description</p>
-         <input type="text" name="description" value={form.description} onChange={handleInput}/>
+         <input type="text" name="description" value={form.description} onChange={handleInput} placeholder="Elden Ring es un videojuego de rol de acción desarrollado por FromSoftware ....."/>
         </label>
 
         <label>
           <p>Genre</p>
-          <input type="text" name="genre"  value={form.genre} onChange={handleInput}/>
+          <input type="text" name="genre"  value={form.genre} onChange={handleInput} placeholder="rol"/>
         </label>
 
         <label>
           <p>Trailer</p>
-          <input type="text" name="trailer"  value={form.trailer} onChange={handleInput}/>
+          <input type="text" name="trailer"  value={form.trailer} onChange={handleInput} placeholder="https://www.youtube.com/watch?v=zHVBW75NEMw&ab_channel=eldanberX"/>
         </label>
         
         <label>
           <p>Image</p>
-          <input type="text" name="img" value={form.img} onChange={handleInput}/>
+          <input type="text" name="img" value={form.img} onChange={handleInput} placeholder="https://plantillasdememes.com/img/plantillas/imagen-no-disponible01601774755.jpg"/>
         </label>
         
         <h3>Platform</h3>
@@ -146,17 +148,19 @@ function Management(props) {
             PLATFORM.map((element,index) => {
               return (
                 <div key={`${JSON.stringify(element)}-${index}`}>
-                <label>
-                <input
-                  type="checkbox"
-                  id="platform"
-                  name={props}
-                  value={form.platform[props]}
-                  onChange={changeCheckbox}
+                  <label>
+                  <input
+                    type="checkbox"
+                    id="platform"
+                    name={element}
+                    value={element}
+                    defaultChecked={form.platform.find(element2 => element2 === element)}
+                    onChange={changeCheckbox}
                   />
                   <p>{element}</p>
-                </label>
-            </div>)
+                  </label>
+                </div>
+                )
             })
           }
           
@@ -174,10 +178,8 @@ function Management(props) {
           />}
           <div className="card__content">
             {form.title && <h3 className="title">Title: {form.title}</h3>}
-            {form.description && <h3 className="description">Description: {form.description}</h3>}
             {form.platform[0] && <h4>Platform: {form.platform.join(' - ')}</h4>} 
             {form.genre && <h4 className="genre">Genre: {form.genre}</h4>}
-            {form.trailer && <h4 className="trailer">Trailer: {form.trailer}</h4>}
           </div>
         </div>}
     </div>

@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Diplomata+SC&family=Rajdhani:wght@500&family=Russo+One&display=swap');
+
+@media screen and (min-width: 780px) {
+	.full-width-img {
+		margin: auto;
+		width: 90%;
+	}
+}
+.home-page {
+	background: url('../../assets/images/city.jpg');
+	background-size: cover;
+	background-attachment: fixed;
+	width: 100%;
+
+	.search {
+		margin: auto;
+		width: 300px;
+	}
+	.input {
+		width: 300px;
+		background: none;
+		border: 0;
+		padding-bottom: 5px;
+
+		// border-bottom: 2px solid #EC68B5;
+		font-weight: normal;
+		overflow: visible;
+		vertical-align: top;
+		display: inline-block !important;
+		padding-left: 5px;
+		padding-top: 2px;
+		color: white;
+		transition: 0.3s all;
+		border-bottom: 2px solid #ec68b5;
+
+		&::placeholder {
+			color: white;
+		}
+	}
+	padding-bottom: 40px;
+
+	.platform {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 20px;
+
+		li {
+			background: linear-gradient(45deg, transparent 5%, #fe00ae 5%);
+			border-radius: 10px;
+			padding: 10px;
+			border: 1px solid black;
+		}
+	}
+}
+
+.welcome {
+	padding-top: 10px;
+	text-align: center;
+	font-family: 'Russo One';
+	font-size: 3rem;
+	font-smooth: auto;
+	text-shadow: 0 1px 0#000000, 0 2px 0 #070004, 0 4px 0 #801955, 0 5px 0 #2f031c, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+		0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15),
+		0 3px 0 #88215d;
+	color: #fe00ae;
+}
+.award {
+	text-align: center;
+	font-family: 'Russo One';
+	font-size: 4rem;
+	font-smooth: auto;
+	text-shadow: 0 1px 0#000000, 0 2px 0 #070004, 0 4px 0 #801955, 0 5px 0 #2f031c, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+		0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15),
+		0 3px 0 #88215d;
+	color: #fe00ae;
+}
+
+.cards {
+	margin-top: 100px;
+	padding: 10px;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+	gap: 100px;
+}
+
+.card {
+	width: 400px;
+	border: 0.5rem solid #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #fe00ae, 0 0 0.8rem #fe00ae, 0 0 2.8rem #fe00ae, inset 0 0 1.3rem #fe00ae;
+	background-color: #696b53b2;
+	background: url(../../assets/images/1.jpg);
+}
+
+img {
+	width: 100%;
+	height: 400px;
+	display: block;
+}
+
+.title {
+	font-size: 33px;
+	color: #ff2ebd;
+	margin-bottom: 40px;
+	text-shadow: 0 1px 0#000000, 0 2px 0 #02f2c6, 0 4px 0 #00ffd0, 0 5px 0 #09f9cd, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+		0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15),
+		0 3px 0 #fe00ae;
+	color: #ff26ba;
+}
+.genre {
+	text-transform: capitalize;
+	margin-bottom: 30px;
+}
+
+.card__content {
+	height: 300px;
+	text-align: center;
+	line-height: 1.5;
+	font-size: 22px;
+	font-weight: bolder;
+	padding: 15px;
+	font-family: 'Russo One', sans-serif;
+	color: #09f9cd;
+	text-shadow: 0 1px 0#000000, 0 2px 0 #070004, 0 4px 0 #fb10b1, 0 5px 0 #2f031c, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1),
+		0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15),
+		0 3px 0 #fe00ae;
+	color: #09f9cd;
+}
+
+.card__buttons {
+	margin-top: 10px;
+	padding: 30px;
+	display: flex;
+	justify-content: space-between;
+	gap: 50px;
+}
