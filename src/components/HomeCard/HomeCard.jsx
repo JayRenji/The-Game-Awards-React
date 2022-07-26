@@ -1,19 +1,20 @@
+
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
 import { editGame } from "../../redux/games/games.actions";
+import ButtonEdit from "../ButtonEdit/ButtonEdit";
+import ButtonVote from "../ButtonVote/ButtonVote";
 
 
-
-
-
-function HomeCard  ({ game })  {
+function HomeCard({ game }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const onClick = () => {
-		navigate('/management', {state:{game}});
-	}
+		navigate('/management', { state: { game } });
+	};
+
 
 	const sumVote = (e) => {
 		Swal.fire({
@@ -31,10 +32,10 @@ function HomeCard  ({ game })  {
 		event.target.src = 'https://plantillasdememes.com/img/plantillas/imagen-no-disponible01601774755.jpg'
 	}
 
-	
+
 	return (
-		<div className='card' >
-			<img src={game.img} alt={game.title} onError= {defaultPic}/>
+		<div className='card'>
+			<img src={game.img} alt={game.title} onError={defaultPic} />
 			<div className='card__content'>
 				<h4 className='genre'>{game.genre}</h4>
 				<ul className='platform'>
@@ -44,10 +45,10 @@ function HomeCard  ({ game })  {
 				</ul>
 			</div>
 			<div className='card__buttons'>
-				<button className='button-49' onClick={sumVote}>VOTE!</button>
-				<button className='button-49' onClick={onClick}>EDIT</button>
+				<ButtonVote sumVote={sumVote}/>
+				<ButtonEdit editFunc={onClick}/>
 			</div>
 		</div>
 	);
-};
+}
 export default HomeCard;
