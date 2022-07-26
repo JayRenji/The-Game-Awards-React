@@ -40,7 +40,7 @@ function HomeCard({ game }) {
 				<h4 className='genre'>{game.genre}</h4>
 				<ul className='platform'>
 					{game.platform.map((platform) => (
-						<li>{platform}</li>
+						<li key={`${JSON.stringify(platform)}`}>{platform}</li>
 					))}
 				</ul>
 			</div>
