@@ -1,6 +1,6 @@
 import './ButtonVote.scss';
 
-function ButtonVote({ button }) {
-	return <button className='button-49'>VOTE!</button>;
+function ButtonVote({ sumVote }) {
+	return <button className='button-49' onClick={sumVote}>VOTE!</button>;
 }
 export default ButtonVote;

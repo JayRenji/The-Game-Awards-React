@@ -11,7 +11,7 @@ function HomeCard({ game }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const onClick = () => {
+	const editFunc = () => {
 		navigate('/management', { state: { game } });
 	};
 
@@ -46,7 +46,7 @@ function HomeCard({ game }) {
 			</div>
 			<div className='card__buttons'>
 				<ButtonVote sumVote={sumVote}/>
-				<ButtonEdit editFunc={onClick}/>
+				<ButtonEdit editFunc={editFunc}/>
 			</div>
 		</div>
 	);
