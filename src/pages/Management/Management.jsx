@@ -180,7 +180,6 @@ function Management(props) {
             {form.title && <h3 className="title">Title: {form.title}</h3>}
             {form.platform[0] && <h4>Platform: {form.platform.join(' - ')}</h4>} 
             {form.genre && <h4 className="genre">Genre: {form.genre}</h4>}
-            {form.trailer && <h4 className="trailer">Trailer: {form.trailer}</h4>}
           </div>
         </div>}
     </div>
