@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import './Management.scss';
 import { createGame,editGame,deleteGame } from "../../redux/games/games.actions";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
 
@@ -21,11 +21,13 @@ const INITIAL_STATE = {
 const PLATFORM = ['PS4','PS5','PC','SWITCH','XBOX X','XBOX S','XBOX ONE']
 
 function Management(props) {
-
-
-  const [form, setForm] = useState(INITIAL_STATE);
-  const [formClean, setFormClean] = useState(INITIAL_STATE);
+  
+  
   const navigate = useNavigate();
+  const location = useLocation();
+  const [form, setForm] = useState(location.state ? location.state.game : INITIAL_STATE);
+  const [formClean, setFormClean] = useState(INITIAL_STATE);
+  
 
   const handleInput = (event) => {
     const { name, value } = event.target;
@@ -144,17 +146,19 @@ function Management(props) {
         <div className="platform">
           {
             PLATFORM.map((element,index) => {
-
               return (
                 <div key={`${JSON.stringify(element)}-${index}`}>
+                  <label>
                   <input
                     type="checkbox"
                     id="platform"
                     name={element}
-                    value={form.platform[element]}
+                    value={element}
+                    defaultChecked={form.platform.find(element2 => element2 === element)}
                     onChange={changeCheckbox}
                   />
-                  <label for={element}>{element}</label>
+                  <p>{element}</p>
+                  </label>
                 </div>
                 )
             })
@@ -174,7 +178,6 @@ function Management(props) {
           />}
           <div className="card__content">
             {form.title && <h3 className="title">Title: {form.title}</h3>}
-            {form.description && <h3 className="description">Description: {form.description}</h3>}
             {form.platform[0] && <h4>Platform: {form.platform.join(' - ')}</h4>} 
             {form.genre && <h4 className="genre">Genre: {form.genre}</h4>}
             {form.trailer && <h4 className="trailer">Trailer: {form.trailer}</h4>}
