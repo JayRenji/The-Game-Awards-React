@@ -1,48 +1,61 @@
 import React from "react";
-import { useState } from "react";
 import "./Login.scss";
 import Swal from "sweetalert2";
+import {useForm} from "react-hook-form"
+import {API} from "../../shared/Api/Api";
+import { useNavigate } from "react-router";
 
-const Login = ({ setLogged }) => {
-	const INITIAL_STATE = {
-		email: "",
-		password: "",
-	};
 
-	const [formState, setFormState] = useState(INITIAL_STATE);
 
-	const handleInput = (event) => {
-		const { name, value } = event.target;
-		setFormState({ ...formState, [name]: value });
-	};
+const Login = ({setLogged}) => {
+	
+	const {register, handleSubmit} = useForm();
 
-	const submitForm = (event) => {
-		event.preventDefault();
-		if (formState.email.length > 8 && formState.password.length > 8) {
+	const navigate = useNavigate();
+	
+	
+
+	const onSubmit = (formData) => {
+		API.post("users/login", formData).then((res) => {
+			localStorage.setItem("token", res.data.token);
+		
+			setLogged(true);
 			Swal.fire({
 				position: "center",
 				icon: "success",
-				title: "Welcome!",
+				title: "Welcome",
 				showConfirmButton: false,
 				timer: 1500,
 			});
-			localStorage.setItem("token", true);
-			setLogged(true);
-		}
+			setTimeout(()=>{
+				navigate("/management")
+			}, 600) 
+		}).catch((error)=>{
+			Swal.fire({
+				position: "center",
+				icon: "warning",
+				title: "User not found",
+				showConfirmButton: false,
+				timer: 1500,
+			});;
+		})
+		
+		
 	};
 
 	return (
 		<section className="login">
 			<h2>Login</h2>
 			<div className="container">
-				<form onSubmit={submitForm} className="form">
+				<form onSubmit={handleSubmit(onSubmit)} className="form">
 					<div className="form__row1">
 						<label>Email</label>
 						<input
 							type="text"
-							onChange={handleInput}
+							
 							name="email"
-							value={formState.email}
+							
+							id="email" {...register("email", {required:true})}
 						></input>
 					</div>
 
@@ -50,9 +63,9 @@ const Login = ({ setLogged }) => {
 						<label>Password</label>
 						<input
 							type="password"
-							onChange={handleInput}
+							
 							name="password"
-							value={formState.password}
+							id="password" {...register("password", {required:true})}
 						></input>
 					</div>
 

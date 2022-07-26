@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import Management from "./pages/Management/Management";
 import Podium from "./pages/Podium/Podium";
+import Register from "./pages/Register/Register";
 import RequireAuth from "./shared/functions/RequireAuth";
 import { useState } from "react";
 
@@ -31,6 +32,7 @@ function App() {
 						path="/login"
 						element={<Login setLogged={setLogged} logged={logged} />}
 					/>
+					<Route path="/register" element={<Register />} />
 				</Routes>
 			</main>
 			<Footer />

@@ -7,6 +7,7 @@ export default function RequireAuth({ children }) {
 	if (!localStorage.getItem("token")) {
 		Swal.fire({
 			position: "center",
+			icon: "warning",
 			title: "Please, login",
 			showConfirmButton: false,
 			timer: 1500,
