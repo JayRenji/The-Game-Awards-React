@@ -36,14 +36,13 @@ function Home() {
       <SearchBar search={search} searcher = {searcher}/>
 			
 
-			{
-      <div className='cards'>
-				{results.map((game) => (
-					<HomeCard game={game} />
-				))}
-			</div>
-     
-      }
+		{
+		<div className='cards'>
+			{results.map((game) => (
+				<HomeCard game={game} />
+			))}
+		</div>
+		}
 		</section>
 	);
 }
