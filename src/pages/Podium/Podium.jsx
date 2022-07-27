@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllGames } from '../../redux/games/games.actions';
 import crown from '../../assets/img/crown.png';
 import PodiumGame from '../../components/PodiumGame/PodiumGame';
+import party from 'party-js';
 
 
 
@@ -18,6 +19,7 @@ function Podium() {
 
   useEffect(() => {
     getGames();
+    
   }, []);
 
   const compare = (a, b) => {
@@ -37,6 +39,9 @@ function Podium() {
 
   return (
     <section className='podium'>
+    {setTimeout(() => {
+      party.confetti(document.querySelector('.podium'));
+    }, 600)}
       <h2>Top 3 GOTY:</h2>
       <img className='crown' src={crown}/>
       <div className='podium__gotys'>
