@@ -32,10 +32,20 @@ function Podium() {
     return 0;
   }
 
-  //sort all games and get only the first 3
-  const sortedGames = games.sort(compare).splice(0,3);
-  //change positions between first and second game to make the best game to render in the middle
-  [sortedGames[0], sortedGames[1]] = [sortedGames[1], sortedGames[0]];
+  const renderGames = () => {
+    //sort all games and get only the first 3
+    const sortedGames = games.sort(compare).splice(0,3);
+
+    if(!sortedGames.length) return null;
+    //change positions between first and second game to make the best game to render in the middle
+    [sortedGames[0], sortedGames[1]] = [sortedGames[1], sortedGames[0]];
+
+    return sortedGames.map((game) =>
+      <PodiumGame game={game}/>
+    )
+    // console.log(sortedGames);
+  }
+  
 
   return (
     <section className='podium'>
@@ -45,9 +55,7 @@ function Podium() {
       <h2>Top 3 GOTY:</h2>
       <img className='crown' src={crown}/>
       <div className='podium__gotys'>
-        {sortedGames.map((game) =>
-          <PodiumGame game={game}/>
-        )}
+        {renderGames()}
       </div>
     </section>
   )
