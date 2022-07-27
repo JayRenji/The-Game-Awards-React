@@ -1,4 +1,3 @@
-
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useDispatch } from 'react-redux';
@@ -35,7 +34,9 @@ function HomeCard({ game }) {
 
 	return (
 		<div className='card'>
-			<img src={game.img} alt={game.title} onError={defaultPic}/>
+			<a href={game.trailer} target='_blank'>
+                <img src={game.img} alt={game.title} />
+            </a>
 			<div className='card__content'>
 				<h4 className='genre'>{game.genre}</h4>
 				<ul className='platform'>
