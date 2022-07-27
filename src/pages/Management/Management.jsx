@@ -119,27 +119,27 @@ function Management(props) {
       <form onSubmit={submitGame}>
         <label>
           <p>Title</p>
-          <input type="text" name="title" value={form.title} onChange={handleInput}/>
+          <input type="text" name="title" value={form.title} onChange={handleInput} placeholder="Elden Ring"/>
         </label>
 
         <label>
           <p>Description</p>
-         <input type="text" name="description" value={form.description} onChange={handleInput}/>
+         <input type="text" name="description" value={form.description} onChange={handleInput} placeholder="Elden Ring es un videojuego de rol de acción desarrollado por FromSoftware ....."/>
         </label>
 
         <label>
           <p>Genre</p>
-          <input type="text" name="genre"  value={form.genre} onChange={handleInput}/>
+          <input type="text" name="genre"  value={form.genre} onChange={handleInput} placeholder="rol"/>
         </label>
 
         <label>
           <p>Trailer</p>
-          <input type="text" name="trailer"  value={form.trailer} onChange={handleInput}/>
+          <input type="text" name="trailer"  value={form.trailer} onChange={handleInput} placeholder="https://www.youtube.com/watch?v=zHVBW75NEMw&ab_channel=eldanberX"/>
         </label>
         
         <label>
           <p>Image</p>
-          <input type="text" name="img" value={form.img} onChange={handleInput}/>
+          <input type="text" name="img" value={form.img} onChange={handleInput} placeholder="https://plantillasdememes.com/img/plantillas/imagen-no-disponible01601774755.jpg"/>
         </label>
         
         <h3>Platform</h3>
@@ -180,7 +180,6 @@ function Management(props) {
             {form.title && <h3 className="title">Title: {form.title}</h3>}
             {form.platform[0] && <h4>Platform: {form.platform.join(' - ')}</h4>} 
             {form.genre && <h4 className="genre">Genre: {form.genre}</h4>}
-            {form.trailer && <h4 className="trailer">Trailer: {form.trailer}</h4>}
           </div>
         </div>}
     </div>
