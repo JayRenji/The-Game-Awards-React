@@ -18,6 +18,8 @@ const Login = ({setLogged}) => {
 	const onSubmit = (formData) => {
 		API.post("users/login", formData).then((res) => {
 			localStorage.setItem("token", res.data.token);
+			localStorage.setItem("rol", res.data.userDB.rol);
+			
 		
 			setLogged(true);
 			Swal.fire({
