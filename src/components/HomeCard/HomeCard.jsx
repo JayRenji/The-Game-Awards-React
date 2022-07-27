@@ -35,7 +35,7 @@ function HomeCard({ game }) {
 
 	return (
 		<div className='card'>
-			<img src={game.img} alt={game.title} onError={defaultPic} />
+			<img src={game.img} alt={game.title} onError={defaultPic}/>
 			<div className='card__content'>
 				<h4 className='genre'>{game.genre}</h4>
 				<ul className='platform'>
