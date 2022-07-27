@@ -4,7 +4,9 @@ import ButtonVote from '../ButtonVote/ButtonVote';
 const HomeCard = ({ game }) => {
 	return (
 		<div className='card'>
-			<img src={game.img} alt={game.title} />
+			<a href={game.trailer} target='_blank'>
+				<img src={game.img} alt={game.title} />
+			</a>
 			<div className='card__content'>
 				<h4 className='genre'>{game.genre}</h4>
 				<ul className='platform'>
