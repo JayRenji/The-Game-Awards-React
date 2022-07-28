@@ -6,17 +6,12 @@ import Header from "./core/Header/Header";
 import RequireAuth from "./shared/functions/RequireAuth";
 import React, { Suspense, useState } from "react";
 import LoadingComponent from "./components/LoadingComponent/LoadingComponent";
-
+import Login from "./pages/Login/Login";
+import Management from "./pages/Management/Management";
+import Register from "./pages/Register/Register";
 
 const Home = React.lazy(() => import('./pages/Home/Home'));
-// import Login from "./pages/Login/Login";
-const Login = React.lazy(() => import('./pages/Login/Login'));
-// import Management from "./pages/Management/Management";
-const Management = React.lazy(() => import('./pages/Management/Management'));
-// import Podium from "./pages/Podium/Podium";
 const Podium = React.lazy(() => import('./pages/Podium/Podium'));
-// import Register from "./pages/Register/Register";
-const Register = React.lazy(() => import('./pages/Register/Register'));
 
 function App() {
 	const [logged, setLogged] = useState(false);
