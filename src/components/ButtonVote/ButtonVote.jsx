@@ -1,3 +1,5 @@
+
+import RequireAuth from '../../shared/functions/RequireAuth';
 import './ButtonVote.scss';
 
 function ButtonVote({ sumVote }) {

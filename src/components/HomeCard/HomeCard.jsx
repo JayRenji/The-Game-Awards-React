@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { editGame } from "../../redux/games/games.actions";
 import ButtonEdit from "../ButtonEdit/ButtonEdit";
 import ButtonVote from "../ButtonVote/ButtonVote";
-
+import {RequireAuth} from "../../shared/functions/RequireAuth";
 
 function HomeCard({ game }) {
 	const dispatch = useDispatch();
@@ -16,6 +16,18 @@ function HomeCard({ game }) {
 
 
 	const sumVote = (e) => {
+
+		if (!localStorage.getItem("token") ) {
+			Swal.fire({
+				position: "center",
+				icon: "warning",
+				title: "Please, login to vote",
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			return;
+		}
+		
 		Swal.fire({
 			position: 'center',
 			icon: 'success',
@@ -23,6 +35,8 @@ function HomeCard({ game }) {
 			showConfirmButton: false,
 			timer: 1500
 		  })
+
+
 		game.votes++;
 		dispatch(editGame(game));
 	}
