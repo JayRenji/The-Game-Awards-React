@@ -1,5 +1,5 @@
 import React from "react";
-import "./Register.jsx";
+import "./Register.scss";
 import { API } from "../../shared/Api/Api";
 import { useNavigate } from "react-router";
 import {useForm} from "react-hook-form"
@@ -11,7 +11,7 @@ const Register = () => {
 
 	const onSubmit = (formData) => {
 		
-		// formData.preventDefault();
+		
 		API.post("users", formData).then((res) => {});
 		navigate("/");
 		console.log(formData);
@@ -24,19 +24,19 @@ const Register = () => {
 				<form className="form" onSubmit={handleSubmit(onSubmit)}>
 					<div className="form__row1">
 						<label>
-							<p>User</p>
+							User
 						</label>
 						<input autoComplete="off" type="text" id="userName" {...register("userName", {required:true})}></input>
 					</div>
 					<div className="form__row2">
 						<label>
-							<p>Email</p>
+							Email
 						</label>
 						<input type="email" id="email" {...register("email", {required:true})}></input>
 					</div>
 					<div className="form__row3">
 						<label>
-							<p>Password</p>
+							Password
 						</label>
 						<input type="password" id="password" {...register("password", {required:true})}></input>
 					</div>
