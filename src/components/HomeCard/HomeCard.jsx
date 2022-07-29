@@ -49,7 +49,7 @@ function HomeCard({ game }) {
 	return (
 		<div className='card'>
 			<a href={game.trailer} target='_blank'>
-                <img src={game.img} alt={game.title} />
+                <img src={game.img} alt={game.title} onError= {defaultPic}/>
             </a>
 			<div className='card__content'>
 				<h4 className='genre'>{game.genre}</h4>
