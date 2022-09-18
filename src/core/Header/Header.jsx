@@ -43,6 +43,14 @@ const Header = ({ setLogged, logged }) => {
 						</li>
 					)}
 
+					{!logged && (
+						<li>
+							<Link to="/register" className="neonText">
+								Register
+							</Link>
+						</li>
+					)}
+
 					{logged && (
 						<li>
 							<a className='neonText logout' onClick={() => setLogout()}>

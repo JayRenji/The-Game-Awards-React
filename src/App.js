@@ -2,14 +2,16 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Footer from './core/Footer/Footer';
 import Header from './core/Header/Header';
-import Home from './pages/Home/Home';
+// import Home from "./pages/Home/Home";
+import RequireAuth from './shared/functions/RequireAuth';
+import React, { Suspense, useState } from 'react';
+import LoadingComponent from './components/LoadingComponent/LoadingComponent';
 import Login from './pages/Login/Login';
 import Management from './pages/Management/Management';
-import Podium from './pages/Podium/Podium';
 import Register from './pages/Register/Register';
-import Checkout from './pages/Checkout/Checkout';
-import RequireAuth from './shared/functions/RequireAuth';
-import { useState } from 'react';
+
+const Home = React.lazy(() => import('./pages/Home/Home'));
+const Podium = React.lazy(() => import('./pages/Podium/Podium'));
 
 function App() {
 	const [logged, setLogged] = useState(false);
@@ -19,8 +21,27 @@ function App() {
 			<Header setLogged={setLogged} logged={logged} />
 			<main>
 				<Routes>
-					<Route path='/' element={<Home />} />
-					<Route path='/podium' element={<Podium />} />
+					{/* <Suspense fallback={<div>Loading...</div>}> */}
+					<Route
+						path='/'
+						element={
+							<Suspense fallback={<LoadingComponent />}>
+								<Home />
+							</Suspense>
+						}
+					/>
+					{/* </Suspense> */}
+					{/* <Suspense  fallback={<div>Loading...</div>}> */}
+					<Route
+						path='/podium'
+						element={
+							<Suspense fallback={<LoadingComponent />}>
+								<Podium />
+							</Suspense>
+						}
+					/>
+					{/* </Suspense> */}
+
 					<Route
 						path='/management'
 						element={
@@ -31,7 +52,6 @@ function App() {
 					/>
 					<Route path='/login' element={<Login setLogged={setLogged} logged={logged} />} />
 					<Route path='/register' element={<Register />} />
-					<Route path='/checkout' element={<Checkout />} />
 				</Routes>
 			</main>
 			<Footer />

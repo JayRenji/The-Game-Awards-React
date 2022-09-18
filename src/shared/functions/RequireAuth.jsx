@@ -1,10 +1,9 @@
 import { Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-// Si localStorage tiene token, permitir el acceso a Management. Envolver el li de la nav de management con la funcion RequireAuth
 
 export default function RequireAuth({ children }) {
-	if (!localStorage.getItem("token")) {
+	if (!localStorage.getItem("token") ) {
 		Swal.fire({
 			position: "center",
 			icon: "warning",
@@ -15,5 +14,11 @@ export default function RequireAuth({ children }) {
 		return <Navigate to="/login" />;
 	}
 
-	return children;
+	if (localStorage.getItem("rol")==="admin")  {
+		return children
+	} else {
+	
+		return <Navigate to= "/"/>
+	}
+
 }
